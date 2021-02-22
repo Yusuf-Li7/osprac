@@ -11,7 +11,7 @@ int main() {
 	char* byte = malloc(sizeof(char));
 	int res = 0;
 	if (pipe(fd) < 0) {
-		printf("Can not create pipe!");
+		printf("Pipe cant create!");
 		exit(-1);
 	}
 	fcntl(fd[1], F_SETFL, fcntl(fd[1], F_GETFL) | O_NONBLOCK);
@@ -19,7 +19,7 @@ int main() {
 		size = write(fd[1], byte, 1);
 		res = res + 1;
 	}
-	printf("Biffer size = %d bytes\n", res);
+	printf("Size of biffer is = %d bytes\n", res);
 	free(byte);
 	return 0;
 }
