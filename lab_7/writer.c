@@ -1,8 +1,8 @@
 #include <sys/types.h>
+#include <errno.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include <stdio.h>
-#include <errno.h>
 #include <stdlib.h>
 
 int main()
@@ -43,7 +43,7 @@ int main()
 	}
 	msg[i - 1] = 0;
 
-	printf("The message has been sent\n");
+	printf("Message sent\n");
 	
 	if (shmdt(msg) < 0) {
 		printf("Error: can\'t detach shared memory\n");
