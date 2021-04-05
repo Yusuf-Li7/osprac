@@ -9,30 +9,30 @@ void *mythread(void *dummy)
     mythid = pthread_self();
     cnt = cnt + 1;
   
-  printf("Thread %d, calculation result = %d\n", mythid, cnt);
+    printf("Thread %d, calculation result = %d\n", mythid, cnt);
 
-  return NULL;
+    return NULL;
 }
 
 
 int main()
 {
     pthread_t thid, thid2, mythid;
-    int result;
+    int res;
 
-    result = pthread_create( &thid, (pthread_attr_t *)NULL, mythread, NULL);
+    res = pthread_create( &thid, (pthread_attr_t *)NULL, mythread, NULL);
   
-    if (result != 0) {
-        printf ("Error from thread creation, return value = %d\n", result);
+    if (res != 0) {
+        printf ("Error from thread creation, return value = %d\n", res);
         exit(-1);
     }
   
     printf("Second thread created, thid = %d\n", thid);
 
-    result = pthread_create( &thid2, (pthread_attr_t *)NULL, mythread, NULL);
+    res = pthread_create( &thid2, (pthread_attr_t *)NULL, mythread, NULL);
   
-    if (result != 0) {
-        printf ("Error dfrom thread creation, return value = %d\n", result);
+    if (res != 0) {
+        printf ("Error dfrom thread creation, return value = %d\n", res);
         exit(-1);
     }
   
