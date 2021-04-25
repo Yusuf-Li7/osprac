@@ -7,11 +7,19 @@
 
 int main()
 {
+	
+    //Semaphore initialized with 1 in start
+    //Parent: D(0, 1) -> for loop:
+    //      write -> A(0, 1) -> Z -> D(0, 1) -> read
+    //Child: for loop:
+    //       D(0, 2) -> read -> write -> A(0, 1)
+   
+
     int     fd[2], result;
-    int     communications_count;
-    key_t   key;                 
-    int     semid;                
-    struct  sembuf mybuf;         
+    int     communications_count;  // = N.
+    key_t   key;                   // IPC key.
+    int     semid;                 // IPC descriptor for IPC semaphores array
+    struct  sembuf mybuf;          // Structure for specifying operations on a semaphore.
     char    pathname[] = "ex3.c";
     size_t  size;
     char    resstring[15];
@@ -46,7 +54,8 @@ int main()
         printf("Can\'t fork child. Terminating.\n");
         exit(-5);
     }
-    else if (result > 0) {  // Parent
+    // Parent
+    else if (result > 0) { 
 	      mybuf.sem_num = 0;
         mybuf.sem_op = -1;
         mybuf.sem_flg = 0;
@@ -100,7 +109,8 @@ int main()
         printf("Parent finished his job.\n");
 
     }
-    else { // Child
+    // Child
+    else {
         for (int i = 0; i < communications_count; ++i) {
             mybuf.sem_num = 0;
             mybuf.sem_op = -2;
