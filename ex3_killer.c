@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <time.h>
 
-//Client
+//Killer
 
 int main(void)
 {
