@@ -17,6 +17,8 @@ int main(void)
   int i,len, maxlen;
   long j;
 
+  
+  // Structure of custom
   struct request {
     long mtype;
     struct {
@@ -26,27 +28,28 @@ int main(void)
   } requestbuf;
 
   if ((key = ftok(pathname,0)) < 0) {
-    printf("Can\'t generate key\n");
+    printf("Error! Can\'t generate key\n");
     exit(-1);
   }
 
   if ((msqid = msgget(key, 0666 | IPC_CREAT)) < 0) {
-    printf("Can\'t get msqid\n");
+    printf("Error! Can\'t get msqid\n");
     exit(-1);
   }
   
   requestbuf.mtype = 2;
   requestbuf.info.pid = getpid();
   requestbuf.info.message = 0;
+  
   len = sizeof(requestbuf.info);
 
   if (msgsnd(msqid, (struct request *) &requestbuf, len, 0) < 0) {
-    printf("Can\'t send message to queue\n");
+    printf("Error! Can\'t send message to queue\n");
     msgctl(msqid, IPC_RMID, (struct msqid_ds *) NULL);
     exit(-1);
   }
 
-  printf("Killer\tI kill server\n");
+  printf("Killer\tI killed the server\n");
 
   return 0;
 }
