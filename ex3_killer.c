@@ -12,7 +12,7 @@
 int main(void)
 {
   int msqid;
-  char pathname[]="ex3_server.c";
+  char pathname[] = "ex3_server.c";
   key_t  key;
   int i,len, maxlen;
   long j;
